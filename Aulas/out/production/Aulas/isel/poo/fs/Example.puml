@@ -1,0 +1,38 @@
+@startuml
+object file {
+  name = "aula.txt"
+  size = 100
+}
+object dir {
+  name = "POO"
+}
+object disk {
+  name = "C:"
+  next = null
+}
+object "?" as f1 {
+  name = "file.txt"
+  size = 1024
+}
+object "?" as f2 {
+  name = "Str.java"
+  size = 2340
+  next = null
+}
+object "?" as d1 {
+  name = "Empty"
+  first = null
+  next = null
+}
+disk o-[hidden]-> f1
+disk o--> dir : first
+disk o-[hidden]-> d1
+dir o--> file : first
+dir o-[hidden]-> f2
+dir -> f1 : next
+f1 -> d1 : next
+file -> f2 :next
+
+
+
+@enduml
