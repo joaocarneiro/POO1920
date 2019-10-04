@@ -25,7 +25,7 @@ public class Dir extends Entry implements Iterable<Entry> {
 
     @Override
     public Iterator<Entry> iterator() {
-        return new Iterator<>() {
+        return new Iterator<Entry>() {
             //private int idx = 0;
             private Entry cur = first;
             @Override

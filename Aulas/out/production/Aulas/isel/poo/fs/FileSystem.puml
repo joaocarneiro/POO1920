@@ -1,0 +1,47 @@
+@startuml
+
+hide circles
+hide empty members
+/'
+Dir ..|> Iterable : T=Entry
+
+Iterable ..> Iterator :<<create>>
+
+interface Iterable<T> {
+  +iterator():Iterator<T>
+}
+interface Iterator<T> {
+   +hasNext():boolean
+   +next():T
+}
+'/
+abstract class Entry {
+  +name :String
+  +getSize() :int
+  +getTree() :String
+  +getPath() :String
+}
+Dir o--> "0..1" Entry :first
+Entry --> "0..1" Dir :parent
+Entry --> "0..1" Entry :next
+
+class File {
+  +size :int
+  +getSize() :int
+}
+Entry <|-- File
+class Dir {
+  +add(e:Entry)
+  +iterator():Iterator<Entry>
+  +getSize() :int
+  +getTree() :String
+}
+Entry <|-- Dir : "         "
+
+class Link {
+  +getTree() :String
+}
+Entry <|-- Link
+Entry "1" <-- Link : source
+
+@enduml
